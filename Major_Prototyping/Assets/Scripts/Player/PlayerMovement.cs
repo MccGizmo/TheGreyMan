@@ -54,12 +54,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /* For Later on when we add animations and shit
+    //For Later on when we add animations and shit
     void Animating(float h, float v)
     {
         // If the horizontal or vertical axis keys are pressed, start the walking animation
         bool walking = h != 0f || v != 0f;
         anim.SetBool("IsWalking", walking);
     }
-    */
 }
