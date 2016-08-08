@@ -32,3 +32,5 @@ sysinfo.txt
 *.log
 *.info
 *.bin
+Major_Prototyping/Library/
+Major_Prototyping/Temp/
