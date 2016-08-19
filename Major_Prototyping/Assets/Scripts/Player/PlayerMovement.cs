@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 6f;
+    public float Speed = 3f;
+    public float rotationSpeed = 5f;
 
     Vector3 movement;
     Animator anim;
@@ -32,9 +33,9 @@ public class PlayerMovement : MonoBehaviour
     void Move(float h, float v)
     {
         movement.Set(h, 0f, v);
-
+       
         // This is so the diagonal movement for the player character is the same speed as the up and down movement
-        movement = movement.normalized * speed * Time.deltaTime;
+        movement = movement.normalized * Speed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
     }
 
@@ -50,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
             playerToMouse.y = 0f;
 
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-            playerRigidbody.MoveRotation (newRotation);
+            Quaternion current = transform.localRotation;
+            //Smooth Character Rotation
+            transform.localRotation = Quaternion.Lerp(current, newRotation, Time.deltaTime * rotationSpeed);
+            //playerRigidbody.MoveRotation (newRotation);
         }
     }
 
