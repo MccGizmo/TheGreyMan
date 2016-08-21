@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float Speed = 3f;
+    public float sprintSpeed = 5f;
     public float rotationSpeed = 5f;
 
     Vector3 movement;
@@ -24,12 +25,20 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxisRaw ("Horizontal");
         float v = Input.GetAxisRaw ("Vertical");
 
-        Move(h, v);
+        //Move(h, v);
         Turning();
+        //Sprint(h, v);
         //Link to bottom
         //Animating(h, v);
+        if (Input.GetButton("Sprint"))
+        {
+            Sprint(h, v);
+        }
+        else
+        {
+            Move(h, v);
+        }
     }
-
     void Move(float h, float v)
     {
         movement.Set(h, 0f, v);
@@ -37,6 +46,16 @@ public class PlayerMovement : MonoBehaviour
         // This is so the diagonal movement for the player character is the same speed as the up and down movement
         movement = movement.normalized * Speed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
+    }
+
+    void Sprint(float h, float v)
+    {
+            movement.Set(h, 0f, v);
+
+            // This is so the diagonal movement for the player character is the same speed as the up and down movement
+            movement = movement.normalized * sprintSpeed * Time.deltaTime;
+            playerRigidbody.MovePosition(transform.position + movement);
+ 
     }
 
     void Turning()
