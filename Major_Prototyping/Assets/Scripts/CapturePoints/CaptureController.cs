@@ -14,6 +14,11 @@ public class CaptureController : MonoBehaviour {
     public float blueCapturePerc = 0;
     public float redCapturePerc = 0;
 
+    void Start() {
+
+       
+    }
+
     void Update() {
 
         if (blueTeam == true && Input.GetKey(KeyCode.E)) {
